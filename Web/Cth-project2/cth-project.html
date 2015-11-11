@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head> 
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"> </script>
+    <style> 
+        img {   
+        display: block;
+        Margin-left: auto;
+        Margin-right:auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1> Let's play a game...</h1>
+    <p>Which way is up?</p>
+    <section id="button"> 
+        <button id="turnbutton" name = "button1">Turn!</button>
+        <button id="guessbutton" name = "button2"> Right way up</button>
+        <button id="nextbutton" name = "button3" > Next image!</button>
+    </section>
+    <section id="image"> 
+        <img id="image1" width="400px" src="http://www.sciencemuseum.ugent.be/anorth03.gif">
+    </section>
+    <script>
+    $(document).ready(function(){
+        var image = 0;
+        var degrees = 0;
+        var my_images = ["http://www.sciencemuseum.ugent.be/anorth03.gif","http://www.girlz.nl/images/content/hondje%201_1.jpg","http://www.kattenplaza.nl/uploads/page/katten_bestanden/cat_ewy3_1.jpg"];
+        console.log(my_images[image]);
+        $('#turnbutton').click(function() {
+                if (degrees == 360) {
+                    degrees = 0
+                }
+                degrees = degrees + 90;
+                my_css_string = "rotate(" + degrees + "deg)";
+                $('#image1').css({transform:my_css_string});
+                console.log(degrees);
+        });
+        $('#guessbutton').click(function(){
+           if (degrees == 360 || degrees == 0) {
+               window.alert("Afbeelding staat recht!");
+           }
+           else {
+               window.alert("Afbeelding staat niet recht!");
+           }
+        });
+        $('#nextbutton').click(function(){
+            if (image == 2){
+                image = 0;
+            }
+            else {
+            image = image + 1;
+            }
+            $('#image1').attr("src", my_images[image]);
+        });
+    });
+    </script>    
+</body>    
+</html>
